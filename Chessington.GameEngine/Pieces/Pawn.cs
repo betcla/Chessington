@@ -18,17 +18,7 @@ namespace Chessington.GameEngine.Pieces
             var pieceLocation = board.FindPiece(this);
             var piece = this;
 
-            if (this.Player == Player.White)
-            {
-                
-                return addingPawnMovements.AddWhitePawnMovements(board, piece);
-            }
-
-            else
-            {
-                return addingPawnMovements.AddBlackPawnMovements(board, piece);
-
-            }
+            return addingPawnMovements.AddPawnMovements(board, piece);
            
         }
     }

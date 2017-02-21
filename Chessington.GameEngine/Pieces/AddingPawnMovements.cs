@@ -12,16 +12,19 @@ namespace Chessington.GameEngine.Pieces
             this.pawn = pawn;
         }
 
-        public IEnumerable<Square> AddBlackPawnMovements(Board board, Piece piece)
+        public IEnumerable<Square> AddPawnMovements(Board board, Pawn piece)
         {
-            return AddPawnMovements(board, piece, 1);
+            if (piece.Player == Player.White)
+            {
+                return AddPawnMovements(board, piece, -1);
+            }
+
+            else
+            {
+                return AddPawnMovements(board, piece, 1);
+            }
         }
 
-        public IEnumerable<Square> AddWhitePawnMovements(Board board, Piece piece)
-        {
-            return AddPawnMovements(board, piece, -1);
-        }
-        
         private IEnumerable<Square> AddPawnMovements(Board board, Piece piece, int a)
         {
             var pieceLocation = board.FindPiece(piece);
