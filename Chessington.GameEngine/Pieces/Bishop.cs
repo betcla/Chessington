@@ -13,9 +13,9 @@ namespace Chessington.GameEngine.Pieces
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
             var bishop = board.FindPiece(this);
-            var availablemoves = new List<Square>();
+            var availableMoves = new List<Square>();
 
-            return AddingMovements.AddDiagonalMoves(availablemoves, bishop);
+            return AddingMovements.AddDiagonalMoves(availableMoves, bishop);
         }
     }
 }

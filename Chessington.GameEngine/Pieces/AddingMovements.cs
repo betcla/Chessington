@@ -4,50 +4,50 @@ namespace Chessington.GameEngine.Pieces
 {
     public class AddingMovements
     {
-        public static List<Square> AddLateralMoves(List<Square> availablemoves, Square piecelocation)
+        public static List<Square> AddLateralMoves(List<Square> availableMoves, Square pieceLocation)
         {
             for (var i = 0; i < 8; i++)
-                availablemoves.Add(Square.At(piecelocation.Row, i));
+                availableMoves.Add(Square.At(pieceLocation.Row, i));
 
             for (var i = 0; i < 8; i++)
-                availablemoves.Add(Square.At(i, piecelocation.Col));
+                availableMoves.Add(Square.At(i, pieceLocation.Col));
 
             //Get rid of our starting location.
-            availablemoves.RemoveAll(s => s == Square.At(piecelocation.Row, piecelocation.Col));
+            availableMoves.RemoveAll(s => s == Square.At(pieceLocation.Row, pieceLocation.Col));
 
-            return availablemoves;
+            return availableMoves;
         }
 
-        public static List<Square> AddDiagonalMoves(List<Square> availablemoves, Square piecelocation)
+        public static List<Square> AddDiagonalMoves(List<Square> availableMoves, Square pieceLocation)
         {
             //Checking diagonals (best way I could find -- still a little messy?)
             for (var i = 0; i < 8; i++)
-                if ((piecelocation.Row + i < 8) && (piecelocation.Col - i >= 0))
+                if ((pieceLocation.Row + i < 8) && (pieceLocation.Col - i >= 0))
                 {
-                    availablemoves.Add(Square.At(piecelocation.Row + i, piecelocation.Col - i));
+                    availableMoves.Add(Square.At(pieceLocation.Row + i, pieceLocation.Col - i));
                 }
 
             for (var i = 0; i < 8; i++)
-                if ((piecelocation.Row + i < 8) && (piecelocation.Col + i < 8))
+                if ((pieceLocation.Row + i < 8) && (pieceLocation.Col + i < 8))
                 {
-                    availablemoves.Add(Square.At(piecelocation.Row + i, piecelocation.Col + i));
+                    availableMoves.Add(Square.At(pieceLocation.Row + i, pieceLocation.Col + i));
                 }
 
             for (var i = 0; i < 8; i++)
-                if ((piecelocation.Row - i >= 0) && (piecelocation.Col - i < 8))
+                if ((pieceLocation.Row - i >= 0) && (pieceLocation.Col - i < 8))
                 {
-                    availablemoves.Add(Square.At(piecelocation.Row - i, piecelocation.Col - i));
+                    availableMoves.Add(Square.At(pieceLocation.Row - i, pieceLocation.Col - i));
                 }
 
             for (var i = 1; i < 8; i++)
-                if ((piecelocation.Row - i >= 0) && (piecelocation.Col + i < 8))
+                if ((pieceLocation.Row - i >= 0) && (pieceLocation.Col + i < 8))
                 {
-                    availablemoves.Add(Square.At(piecelocation.Row - i, piecelocation.Col + i));
+                    availableMoves.Add(Square.At(pieceLocation.Row - i, pieceLocation.Col + i));
                 }
             //Get rid of our starting location.
-            availablemoves.RemoveAll(s => s == Square.At(piecelocation.Row, piecelocation.Col));
+            availableMoves.RemoveAll(s => s == Square.At(pieceLocation.Row, pieceLocation.Col));
 
-            return availablemoves;
+            return availableMoves;
         }
     }
 }

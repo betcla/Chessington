@@ -14,34 +14,34 @@ namespace Chessington.GameEngine.Pieces
         {
             if (this.Player == Player.White)
             {
-                var whitepiece = board.FindPiece(this);
-                var availablemoves = new[] {Square.At(whitepiece.Row - 1, whitepiece.Col)};
+                var whitePiece = board.FindPiece(this);
+                var availableMoves = new[] {Square.At(whitePiece.Row - 1, whitePiece.Col)};
                 
-                if (whitepiece.Row == 7)
+                if (whitePiece.Row == 7)
                 {
-                    var firstavailablemove=availablemoves.Concat(new[] {Square.At(whitepiece.Row - 2, whitepiece.Col)});
-                    return firstavailablemove;
+                    var firstAvailableMove=availableMoves.Concat(new[] {Square.At(whitePiece.Row - 2, whitePiece.Col)});
+                    return firstAvailableMove;
                 }
                 else
                 {
-                    return availablemoves;
+                    return availableMoves;
                 }
             }
 
             if (this.Player == Player.Black)
             {
-                var blackpiece = board.FindPiece(this);
-                var availablemoves = new[] {Square.At(blackpiece.Row + 1, blackpiece.Col)};
+                var blackPiece = board.FindPiece(this);
+                var availableMoves = new[] {Square.At(blackPiece.Row + 1, blackPiece.Col)};
 
-                if (blackpiece.Row == 1)
+                if (blackPiece.Row == 1)
                 {
-                    var firstavailablemove =
-                        availablemoves.Concat(new[] {Square.At(blackpiece.Row + 2, blackpiece.Col)});
-                    return firstavailablemove;
+                    var firstAvailableMove =
+                        availableMoves.Concat(new[] {Square.At(blackPiece.Row + 2, blackPiece.Col)});
+                    return firstAvailableMove;
                 }
                 else 
                 {
-                    return availablemoves;
+                    return availableMoves;
                 }
             }
             else
