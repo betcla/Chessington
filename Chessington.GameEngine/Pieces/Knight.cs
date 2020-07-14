@@ -10,6 +10,7 @@ namespace Chessington.GameEngine.Pieces
 
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
+            //Adding knight moves
             var availablesMoves = new List<Square>
             {
                 Square.At(2, 5),
@@ -21,7 +22,13 @@ namespace Chessington.GameEngine.Pieces
                 Square.At(6, 5),
                 Square.At(6, 3)
             };
-            return Enumerable.Empty<Square>();
+            //Letting king jump over pieces
+            if (board.GetPiece(Square.At(2, 3)) != null)
+            {
+                availablesMoves.Add(Square.At(2, 5));
+            }
+
+            return availablesMoves;
         }
     }
 }
