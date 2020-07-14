@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pieces\AddingMovements.cs" />
+    <Compile Include="Pieces\AddingPawnMovements.cs" />
     <Compile Include="Pieces\Bishop.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="GameSettings.cs" />
