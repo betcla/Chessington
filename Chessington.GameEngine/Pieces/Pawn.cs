@@ -16,14 +16,37 @@ namespace Chessington.GameEngine.Pieces
             {
                 var whitepiece = board.FindPiece(this);
                 var availablemoves = new[] {Square.At(whitepiece.Row - 1, whitepiece.Col)};
-                return availablemoves;
+                
+                if (whitepiece.Row == 7)
+                {
+                    var firstavailablemove=availablemoves.Concat(new[] {Square.At(whitepiece.Row - 2, whitepiece.Col)});
+                    return firstavailablemove;
+                }
+                else if (whitepiece.Row != 7)
+                {
+                    return availablemoves;
+                }
             }
 
             if (this.Player == Player.Black)
             {
                 var blackpiece = board.FindPiece(this);
                 var availablemoves = new[] {Square.At(blackpiece.Row + 1, blackpiece.Col)};
-                return availablemoves;
+
+                if (blackpiece.Row == 1)
+                {
+                    var firstavailablemove =
+                        availablemoves.Concat(new[] {Square.At(blackpiece.Row + 2, blackpiece.Col)});
+                    return firstavailablemove;
+                }
+                else if (blackpiece.Row != 1)
+                {
+                    return availablemoves;
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {
