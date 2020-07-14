@@ -22,7 +22,7 @@ namespace Chessington.GameEngine.Pieces
                     var firstavailablemove=availablemoves.Concat(new[] {Square.At(whitepiece.Row - 2, whitepiece.Col)});
                     return firstavailablemove;
                 }
-                else if (whitepiece.Row != 7)
+                else
                 {
                     return availablemoves;
                 }
@@ -39,13 +39,9 @@ namespace Chessington.GameEngine.Pieces
                         availablemoves.Concat(new[] {Square.At(blackpiece.Row + 2, blackpiece.Col)});
                     return firstavailablemove;
                 }
-                else if (blackpiece.Row != 1)
+                else 
                 {
                     return availablemoves;
-                }
-                else
-                {
-                    return null;
                 }
             }
             else
