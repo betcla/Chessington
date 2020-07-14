@@ -16,41 +16,9 @@ namespace Chessington.GameEngine.Pieces
             var availablemoves = new List<Square>();
 
             //Adding diagonal movements
-            for (var i = 0; i < 8; i++)
-                if ((queen.Row + i < 8) && (queen.Col - i >= 0))
-                {
-                    availablemoves.Add(Square.At(queen.Row + i, queen.Col - i));
-                }
-
-            for (var i = 0; i < 8; i++)
-                if ((queen.Row + i < 8) && (queen.Col + i < 8))
-                {
-                    availablemoves.Add(Square.At(queen.Row + i, queen.Col + i));
-                }
-
-            for (var i = 0; i < 8; i++)
-                if ((queen.Row - i >= 0) && (queen.Col - i < 8))
-                {
-                    availablemoves.Add(Square.At(queen.Row - i, queen.Col - i));
-                }
-
-            for (var i = 1; i < 8; i++)
-                if ((queen.Row - i >= 0) && (queen.Col + i < 8))
-                {
-                    availablemoves.Add(Square.At(queen.Row - i, queen.Col + i));
-                }
-            
+            var diagonalmoves = AddingMovements.AddDiagonalMoves(availablemoves, queen);
             //Adding lateral movements
-            for (var i = 0; i < 8; i++)
-                availablemoves.Add(Square.At(queen.Row, i));
-
-            for (var i = 0; i < 8; i++)
-                availablemoves.Add(Square.At(i, queen.Col));
-
-            //Get rid of our starting location.
-            availablemoves.RemoveAll(s => s == Square.At(queen.Row, queen.Col));
-
-            return availablemoves;
+            return AddingMovements.AddLateralMoves(diagonalmoves, queen);
         }
     }
 }
