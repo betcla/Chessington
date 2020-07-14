@@ -16,13 +16,13 @@ namespace Chessington.GameEngine.Pieces
             var availablemoves = new List<Square>();
 
             for (var i = 0; i < 8; i++)
-                availablemoves.Add(Square.At(4, i));
+                availablemoves.Add(Square.At(rook.Row, i));
 
             for (var i = 0; i < 8; i++)
-                availablemoves.Add(Square.At(i, 4));
+                availablemoves.Add(Square.At(i, rook.Col));
 
             //Get rid of our starting location.
-            availablemoves.RemoveAll(s => s == Square.At(4, 4));
+            availablemoves.RemoveAll(s => s == Square.At(rook.Row, rook.Col));
 
             return availablemoves;
         }
