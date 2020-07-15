@@ -14,43 +14,27 @@ namespace Chessington.GameEngine.Pieces
 
         public IEnumerable<Square> AddBlackPawnMovements(Board board, Piece piece)
         {
-            var pieceLocation = board.FindPiece(piece);
-
-            if (board.GetPiece(Square.At(pieceLocation.Row + 1, pieceLocation.Col)) == null)
-            {
-                var availableMoves = new[] {Square.At(pieceLocation.Row + 1, pieceLocation.Col)};
-
-                if ((piece.hasMoved == false) &&
-                    (board.GetPiece(Square.At(pieceLocation.Row + 2, pieceLocation.Col)) == null))
-                {
-                    var firstAvailableMove =
-                        availableMoves.Concat(new[] {Square.At(pieceLocation.Row + 2, pieceLocation.Col)});
-                    return firstAvailableMove;
-                }
-                else
-                {
-                    return availableMoves;
-                }
-            }
-            else
-            {
-                return Enumerable.Empty<Square>();
-            }
+            return AddPawnMovements(board, piece, 1);
         }
 
         public IEnumerable<Square> AddWhitePawnMovements(Board board, Piece piece)
         {
+            return AddPawnMovements(board, piece, -1);
+        }
+        
+        private IEnumerable<Square> AddPawnMovements(Board board, Piece piece, int a)
+        {
             var pieceLocation = board.FindPiece(piece);
 
-            if (board.GetPiece(Square.At(pieceLocation.Row - 1, pieceLocation.Col)) == null)
+            if (board.GetPiece(Square.At(pieceLocation.Row + a, pieceLocation.Col)) == null)
             {
-                var availableMoves = new[] {Square.At(pieceLocation.Row - 1, pieceLocation.Col)};
+                var availableMoves = new[] {Square.At(pieceLocation.Row + a, pieceLocation.Col)};
 
                 if (piece.hasMoved == false &&
-                    (board.GetPiece(Square.At(pieceLocation.Row - 2, pieceLocation.Col)) == null))
+                    (board.GetPiece(Square.At(pieceLocation.Row +2*a, pieceLocation.Col)) == null))
                 {
                     var firstAvailableMove =
-                        availableMoves.Concat(new[] {Square.At(pieceLocation.Row - 2, pieceLocation.Col)});
+                        availableMoves.Concat(new[] {Square.At(pieceLocation.Row +2*a, pieceLocation.Col)});
                     return firstAvailableMove;
                 }
                 else
