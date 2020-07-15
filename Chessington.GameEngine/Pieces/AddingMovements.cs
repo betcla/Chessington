@@ -4,48 +4,52 @@ namespace Chessington.GameEngine.Pieces
 {
     public class AddingMovements
     {
-        public static List<Square> AddLateralMoves(List<Square> availableMoves, Square pieceLocation)
+        public static List<Square> AddLateralMoves(Square pieceLocation)
         {
-            for (var i = 0; i < 8; i++)
+            var availableMoves = new List<Square>();
+            for (var i = 0; i < GameSettings.BoardSize; i++)
+            {
                 availableMoves.Add(Square.At(pieceLocation.Row, i));
+            }
 
-            for (var i = 0; i < 8; i++)
+            for (var i = 0; i < GameSettings.BoardSize; i++)
+            {
                 availableMoves.Add(Square.At(i, pieceLocation.Col));
+            }
 
-            //Get rid of our starting location.
-            availableMoves.RemoveAll(s => s == Square.At(pieceLocation.Row, pieceLocation.Col));
+            availableMoves.RemoveAll(s => s == pieceLocation);
 
             return availableMoves;
         }
 
-        public static List<Square> AddDiagonalMoves(List<Square> availableMoves, Square pieceLocation)
+        public static List<Square> AddDiagonalMoves(Square pieceLocation)
         {
-            //Checking diagonals (best way I could find -- still a little messy?)
-            for (var i = 0; i < 8; i++)
-                if ((pieceLocation.Row + i < 8) && (pieceLocation.Col - i >= 0))
+            var availableMoves = new List<Square>();
+            for (var i = 0; i < GameSettings.BoardSize; i++)
+                if ((pieceLocation.Row + i < GameSettings.BoardSize) && (pieceLocation.Col - i >= 0))
                 {
                     availableMoves.Add(Square.At(pieceLocation.Row + i, pieceLocation.Col - i));
                 }
 
-            for (var i = 0; i < 8; i++)
-                if ((pieceLocation.Row + i < 8) && (pieceLocation.Col + i < 8))
+            for (var i = 0; i < GameSettings.BoardSize; i++)
+                if ((pieceLocation.Row + i < GameSettings.BoardSize) && (pieceLocation.Col + i < GameSettings.BoardSize))
                 {
                     availableMoves.Add(Square.At(pieceLocation.Row + i, pieceLocation.Col + i));
                 }
 
-            for (var i = 0; i < 8; i++)
-                if ((pieceLocation.Row - i >= 0) && (pieceLocation.Col - i < 8))
+            for (var i = 0; i < GameSettings.BoardSize; i++)
+                if ((pieceLocation.Row - i >= 0) && (pieceLocation.Col - i < GameSettings.BoardSize))
                 {
                     availableMoves.Add(Square.At(pieceLocation.Row - i, pieceLocation.Col - i));
                 }
 
-            for (var i = 1; i < 8; i++)
-                if ((pieceLocation.Row - i >= 0) && (pieceLocation.Col + i < 8))
+            for (var i = 1; i < GameSettings.BoardSize; i++)
+                if ((pieceLocation.Row - i >= 0) && (pieceLocation.Col + i < GameSettings.BoardSize))
                 {
                     availableMoves.Add(Square.At(pieceLocation.Row - i, pieceLocation.Col + i));
                 }
-            //Get rid of our starting location.
-            availableMoves.RemoveAll(s => s == Square.At(pieceLocation.Row, pieceLocation.Col));
+
+            availableMoves.RemoveAll(s => s == pieceLocation);
 
             return availableMoves;
         }

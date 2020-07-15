@@ -12,13 +12,15 @@ namespace Chessington.GameEngine.Pieces
             this.pawn = pawn;
         }
 
-        public IEnumerable<Square> AddBlackPawnMovements(Board board, Square pieceLocation)
+        public IEnumerable<Square> AddBlackPawnMovements(Board board, Piece piece)
         {
+            var pieceLocation = board.FindPiece(piece);
+
             if (board.GetPiece(Square.At(pieceLocation.Row + 1, pieceLocation.Col)) == null)
             {
                 var availableMoves = new[] {Square.At(pieceLocation.Row + 1, pieceLocation.Col)};
 
-                if ((pieceLocation.Row == 1) &&
+                if ((piece.hasMoved == false) &&
                     (board.GetPiece(Square.At(pieceLocation.Row + 2, pieceLocation.Col)) == null))
                 {
                     var firstAvailableMove =
@@ -36,13 +38,15 @@ namespace Chessington.GameEngine.Pieces
             }
         }
 
-        public IEnumerable<Square> AddWhitePawnMovements(Board board, Square pieceLocation)
+        public IEnumerable<Square> AddWhitePawnMovements(Board board, Piece piece)
         {
+            var pieceLocation = board.FindPiece(piece);
+
             if (board.GetPiece(Square.At(pieceLocation.Row - 1, pieceLocation.Col)) == null)
             {
                 var availableMoves = new[] {Square.At(pieceLocation.Row - 1, pieceLocation.Col)};
 
-                if ((pieceLocation.Row == 7) &&
+                if (piece.hasMoved == false &&
                     (board.GetPiece(Square.At(pieceLocation.Row - 2, pieceLocation.Col)) == null))
                 {
                     var firstAvailableMove =

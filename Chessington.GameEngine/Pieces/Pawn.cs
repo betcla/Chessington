@@ -15,23 +15,21 @@ namespace Chessington.GameEngine.Pieces
 
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
+            var pieceLocation = board.FindPiece(this);
+            var piece = this;
+
             if (this.Player == Player.White)
             {
-                var whitePiece = board.FindPiece(this);
-
-                return addingPawnMovements.AddWhitePawnMovements(board, whitePiece);
+                
+                return addingPawnMovements.AddWhitePawnMovements(board, piece);
             }
 
-            if (this.Player == Player.Black)
-            {
-                var blackPiece = board.FindPiece(this);
-
-                return addingPawnMovements.AddBlackPawnMovements(board, blackPiece);
-            }
             else
             {
-                return Enumerable.Empty<Square>();
+                return addingPawnMovements.AddBlackPawnMovements(board, piece);
+
             }
+           
         }
     }
 }
