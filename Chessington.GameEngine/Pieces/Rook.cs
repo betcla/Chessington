@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Chessington.GameEngine.Pieces
@@ -14,7 +15,18 @@ namespace Chessington.GameEngine.Pieces
         {
             var rook = board.FindPiece(this);
 
-            return AddingMovements.AddLateralMoves(rook);
+            var friendlyPiece = Square.At(4, 7);
+            var lateralMoves = AddingMovements.AddLateralMoves(rook);
+
+            if (board.GetPiece(Square.At(4, 6)) != null)
+            {
+                lateralMoves.RemoveAll(s => s == friendlyPiece);
+                return lateralMoves;
+            }
+            else
+            {
+                return lateralMoves;
+            }
         }
     }
 }
